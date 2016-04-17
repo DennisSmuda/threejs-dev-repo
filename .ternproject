@@ -1,0 +1,17 @@
+{
+    "libs": [
+        "browser",
+        "jquery",
+        "threejs"
+    ],
+    "loadEagerly": [
+        "./bower_components/three.js/three.min.js"
+    ],
+    "plugins": {
+        "requirejs": {
+            "baseURL": "./js/index.js",
+            "paths": {}
+        },
+        "node": {}
+    }
+}
