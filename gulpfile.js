@@ -1,6 +1,5 @@
 /*global -$ */
 'use strict';
-// generated on 2016-01-04 using generator-modern-frontend 0.2.8
 var fs = require('fs');
 var path = require('path');
 

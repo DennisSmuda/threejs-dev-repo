@@ -2,29 +2,46 @@ var WIDTH = window.innerWidth,
     HEIGHT = window.innerHeight;
 
 
-import { basicGreyMaterial } from './materials/index';
-import { rendererConfig } from './config/renderer';
+import { basicGreyMaterial, LineBasicMaterial } from './materials/index';
+import { RENDERER_CONFIG } from './config/renderer';
+import { BoxGeometry } from './geometry/Box';
 
 
-export default class MoveCube {
+function createStrings() {
+  let strings = [];
+
+  for (let i = 0; i < 6; i++) {
+    let geometry = new THREE.Geometry();
+    geometry.vertices.push(new THREE.Vector3(-10,i,0));
+    geometry.vertices.push(new THREE.Vector3(10,i,0));
+    strings[i] = new THREE.Line(geometry, LineBasicMaterial);
+  }
+
+  return strings;
+}
+
+
+export default class FretBoard {
   constructor(container) {
     this.container = container;
 
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 1000),
 
-    this.renderer = new THREE.WebGLRenderer(rendererConfig);
+    this.renderer = new THREE.WebGLRenderer(RENDERER_CONFIG);
     this.renderer.setSize(WIDTH, HEIGHT);
 
+    this.strings = createStrings();
 
-    let geometry = new THREE.BoxGeometry(1, 1, 1);
-    this.cube = new THREE.Mesh( geometry, basicGreyMaterial );
-    this.scene.add(this.cube);
+    for (let i in this.strings) {
+      this.scene.add(this.strings[i]);
+    }
 
 
     this.renderer.setClearColor(0xf0f0f0);
 
-    this.camera.position.z = 3;
+    this.camera.position.z = 7;
+    this.camera.position.y = 3;
 
     this.container.appendChild(this.renderer.domElement);
     window.addEventListener('resize', this.onResize.bind(this));
@@ -40,9 +57,6 @@ export default class MoveCube {
   }
 
   loop () {
-    this.cube.rotation.y += 0.005;
-    this.cube.rotation.z += 0.001;
-
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.loop.bind(this));
   }

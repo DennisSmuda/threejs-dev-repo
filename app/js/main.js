@@ -1,6 +1,6 @@
 /* jshint devel:true */
 import Application from './Application';
-import MoveCube from './MoveCube';
+import FretBoard from './FretBoard';
 
-var app = new MoveCube(document.body);
+var app = new FretBoard(document.body);
 app.loop();
