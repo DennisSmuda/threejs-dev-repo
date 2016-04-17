@@ -1,11 +1,9 @@
-threejs-es6-boilerplate
+threejs development repo
 ===
 
-Simple THREE.js Application boilerplate to use with ES6.
+ThreeJS learn and develop
 
-> This project structure was generated through
-> [modern-frontend](https://github.com/endel/generator-modern-frontend)
-> [Yeoman](https://github.com/yeoman/yo)'s generator.
+based on endel boilerplate
 
 License
 ---
