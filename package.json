@@ -4,7 +4,10 @@
     "node": ">=0.12.0"
   },
   "browserify": {
-    "transform": [ "babelify", "envify" ]
+    "transform": [
+      "babelify",
+      "envify"
+    ]
   },
   "scripts": {
     "start": "gulp serve",
@@ -36,5 +39,9 @@
     "main-bower-files": "^2.5.0",
     "wiredep": "^2.2.2",
     "babel-preset-es2015": "^6.3.13"
+  },
+  "dependencies": {
+    "lodash": "^4.11.1",
+    "tween.js": "^16.3.4"
   }
 }
