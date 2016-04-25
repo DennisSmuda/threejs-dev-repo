@@ -34,6 +34,49 @@ function createStrings(numStrings) {
   return strings;
 }
 
+function createInlays() {
+  let inlays = [6];
+  // create Inlay
+
+
+  _.times(7, function(i) {
+    let inlayGeometry = new THREE.CircleGeometry(0.2, 12);
+    let inlay = new THREE.Mesh(inlayGeometry, InlayMaterial);
+    inlay.position.y = 2.5;
+
+    switch(i) {
+      case 0:
+        inlay.position.x = -7.5;
+        break;
+      case 1:
+        inlay.position.x = -5.5;
+        break;
+      case 2:
+        inlay.position.x = -3.5;
+        break;
+      case 3:
+        inlay.position.x = -1.5;
+        break;
+      case 4:
+        inlay.position.x = 1.5;
+        inlay.scale.y = 1.5;
+        break;
+      case 5:
+        inlay.position.x = 3.5;
+        break;
+      case 6:
+        inlay.position.x = 5.5;
+        break;
+      default:
+        break;
+    }
+
+    inlays[i] = (inlay);
+  });
+
+  return inlays;
+}
+
 
 export default class FretBoard {
   constructor(container) {
@@ -54,15 +97,14 @@ export default class FretBoard {
     neck.width = 10;
     this.scene.add(neck);
 
-    // create Inlay
-    let inlayGeometry = new THREE.CircleGeometry(0.2, 12);
-    let inlay = new THREE.Mesh(inlayGeometry, InlayMaterial);
-    inlay.position.y = 2.5;
-    this.scene.add(inlay);
-
     // Create Strings and Frets
     this.strings = createStrings(6);
     this.frets = createFrets(12);
+    this.inlays = createInlays();
+
+    for (let i in this.inlays) {
+      this.scene.add(this.inlays[i]);
+    }
 
     for (let i in this.strings) {
       this.scene.add(this.strings[i]);
